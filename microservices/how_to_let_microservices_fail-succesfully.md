@@ -86,6 +86,8 @@ You're just building chaos, team by team.
 - Push code into production and repeat the sacred phrase:
 > “We’ll fix it later.”
 
+![If it work, dont touch it](./images/)
+
 **Note**: Later never comes. But the outages will.
 
 ## 🧱 2. Design & Architecture: Build the Perfect Mess
@@ -100,6 +102,8 @@ Just guess the microservice boundaries and figure it out later (or never).
 - Break services by technical layer (`AuthService`, `DBService`, `UtilityService`) instead of business capability.
 - Allow overlapping responsibilities across services.
 - Duplicate business logic everywhere to “stay agile.”
+
+![Technical beyond business](./images/)
 
 ---
 
@@ -152,7 +156,7 @@ A login request? Easy. Just call:
 
 > 🧑‍💻 “Don’t involve the architect—they’ll ask for boundaries and cohesion.”
 
-[Diagram] “Nano-service Chain: One Request, 12 Services”
+![Nano-service Chain: One Request, 12 Services](./images/)
 
 Bonus: The more lines on the architecture diagram, the more success it looks like.
 
@@ -186,7 +190,7 @@ If no one can see it fail, it didn’t fail, right?
 
 **Bonus tip:** Only log successful requests. Errors are for pessimists.
 
-[**Diagram:** *“What Logs Where? Nobody Knows!”*]
+![What Logs Where? Nobody Knows!](./images/)
 
 ---
 
