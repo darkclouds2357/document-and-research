@@ -58,8 +58,6 @@ Even then, you’re skating on thin ice.
 - Don’t skip APIs because “it’s faster.” That’s not speed—it’s debt.
 - Don’t pretend this is okay “for now” and forget about it. That’s how systems rot.
 
-Got it—no more bullet-to-bullet slide copying. Let’s rewrite the **Direct Service Calls** section as a proper article section—narrative, sharp, and in your style.
-
 ---
 
 ## **3. Direct Service Calls (Point-to-Point)**  
