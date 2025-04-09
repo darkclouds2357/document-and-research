@@ -160,8 +160,6 @@ You reach for async messaging when the system needs to **react**, not wait. It�
   Multiple services might care about the same event—like `InvoicePaid`. Instead of A knowing everyone to notify, it just emits the fact, and subscribers take care of their part. This gives you extensibility without rewriting the origin.
 
 
-Perfect—let’s frame the **Outbox Pattern** as a **subsection** under **Asynchronous Messaging / Event-Driven Architecture**, since that’s where it lives conceptually. Here’s how to adjust the flow:
-
 ---
 
 ### Reliability in Event-Driven Systems  
