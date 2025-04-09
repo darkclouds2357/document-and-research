@@ -330,3 +330,140 @@ It's not DRY. It's **explicit responsibility separation**.
 
 ---
 
+## 5. Replication-Based Patterns  
+### *How Systems Share State Without Talking to Each Other*
+
+Replication isn’t new. Databases have used it for decades to copy data from one node to another for high availability or scaling reads. But in modern distributed systems, especially microservices, replication becomes a tool to **reduce coupling** and **enable autonomy**.
+
+### Traditional Database Replication
+
+Every major database offers built-in replication:
+
+![MySQL Replication](./images/mysql_replication.jpg)
+- **MySQL** uses binary logs (`binlog`) and relay logs to copy changes from a primary (master) to replicas (slaves). Changes are streamed, parsed, and replayed.
+
+![PostgreSQL Replication](./images/postgresql_replication.jpg)
+- **PostgreSQL** uses Write-Ahead Logs (WAL). The primary writes WAL records; a standby reads and replays them to stay in sync.
+
+![MSSQL Replication](./images/mssql_replication.jpg)
+- **SQL Server** uses a combination of transaction logs and a replication agent to sync data between publisher and subscribers.
+
+These mechanisms are battle-tested for **horizontal read scalability** and **HA failover**, but they’re tightly coupled to the database engine, and rarely cross service or domain boundaries.
+
+In microservices, we want something more flexible.
+
+---
+
+### Materialized View: More Than Just a Database Feature
+
+In the traditional sense, a **materialized view** is a precomputed, stored result of a query inside the database. It gets refreshed periodically or manually.
+
+But in distributed architecture, the concept has grown into a pattern.
+
+![Materialized View](./images/materialized_view.jpg)
+
+A materialized view is now any **read-optimized copy of data**, stored and shaped to fit the needs of a specific service or context. It's:
+- Derived from a source (event stream, database, API)
+- Maintained in a separate store
+- Updated via push or pull, in real time or eventually
+
+For example, Service B might need some customer metadata managed by Service A. Instead of making live API calls, B maintains a **materialized view** of that data—a local, synced, read-optimized copy.
+
+This enables:
+- **Decoupling** between services
+- **Resilience** against network or service failures
+- **Performance** by avoiding cross-service calls on every query
+
+But it comes with trade-offs: syncing complexity, stale data, and eventual consistency.
+
+---
+
+### Implementing Materialized Views with Change Data Capture (CDC)
+
+![CDC](./images/cdc.jpg)
+
+To build and maintain these views, we need to capture changes from the source of truth and propagate them downstream. This is where **Change Data Capture (CDC)** comes in.
+
+CDC hooks into your database's low-level logs—like MySQL binlogs or Postgres WALs—and emits a stream of row-level changes: inserts, updates, deletes. These are sent to downstream consumers (like Kafka topics or sink connectors) that apply the changes to target systems.
+
+This allows systems to stay in sync **without modifying source service code**. You can:
+- Build materialized views for query-heavy services
+- Sync reference data across boundaries
+- Feed analytics systems in near-real time
+
+However, CDC only captures **what changed**, not **why**. It doesn’t know the business intent behind an update. And schema evolution can be painful. Still, for syncing state across boundaries in read-optimized form, CDC is a practical powerhouse.
+
+---
+
+Replication-based patterns offer an alternative to direct service calls or event publishing. By materializing the right views in the right places, you reduce coupling, improve resilience, and empower services to own their own read models.
+
+It's not about sharing databases. It's about **replicating the right slice of data, shaped for the consumer**, without the source even knowing who the consumers are.
+
+🧰 Tools:
+
+- **Debezium**: Open-source CDC framework that captures changes from MySQL, Postgres, SQL Server, and more, and publishes them to Kafka.
+- **Kafka Connect**: Pluggable framework for integrating Kafka with external systems. Often used with Debezium for CDC pipelines.
+- **DMS (AWS Database Migration Service)**: Cloud-native CDC tool that helps replicate databases across environments with minimal downtime.
+
+---
+
+## **7. Recommendations**  
+### *Which Approach Fits Which Domain*
+
+After all the patterns and diagrams, here’s what actually works in production. These are the approaches that tend to hold up well over time, based on real-world experience—not theory.
+
+### 1. **Core Domain with Complex Business Logic**
+
+This is where workflows live, decisions are made, and coordination matters. Think order processing, payment approvals, or long-running booking flows.
+
+**Recommended Approach:**
+- Use **event-driven architecture** with domain events and handlers.
+- For long-lived or critical state transitions, layer in **CQRS** and **Event Sourcing** to manage complexity, track history, and enable time-travel/debug.
+- For internal consistency (e.g. saga orchestration), sometimes you still need **direct service calls**—especially when one service must respond immediately based on business from another. Not everything can be eventual.
+- Use **CDC** only for read-only sync of reference data that these services might rely on.
+
+> ⚠️ In Saga flows, use direct calls when you need **tight consistency** and **real-time process feedback**, especially early in the flow. Use events for everything else.
+
+---
+
+### 2. **Core Domain with Choreography (Loosely Coupled Reactions)**
+
+These are domains that react to business events, but don’t own or control the primary process. Example: when an `OrderPlaced` event triggers `RewardPointsIssued` or `CustomerNotified`.
+
+**Recommended Approach:**
+- Use **event-driven choreography** where services listen to and react to domain events.
+- Use **CDC** only if these services rely on external reference data (e.g., catalog info, employee status, etc.)—just for syncing, not for workflow control.
+
+---
+
+### 3. **Supporting Domains (CRUD-Centric)**
+
+These services do a job, but don’t own deep logic. Think: employee records, internal address book, product info manager.
+
+**Recommended Approach:**
+- Don’t make consumers call these services directly.
+- Use **CDC** to push data downstream to consumers that need a copy for reference or UI rendering.
+- Let downstream services treat the data as **read-only**.
+
+> 🎤 **CDC fits best for read-only reference data.** It avoids tight runtime coupling, ensures downstream services stay fresh, and doesn’t require consumers to care about CRUD logic—they just need the data.
+
+---
+
+### 4. **Generic Reference Data (Static or Global)**
+
+Lists like countries, currencies, or role types don’t change often, but need to be available to many services.
+
+**Recommended Approach:**
+- Use **CDC-based replication** or **API Gateway-level caching**.
+- The goal isn’t real-time—it’s wide availability and minimal integration cost.
+
+---
+
+There’s no single “correct” strategy—only context-driven trade-offs.  
+Pick the simplest solution that maintains correctness, decoupling, and clarity.
+
+If you need **data integrity now**, use a direct call.  
+If you need **flexibility and scale**, use events.  
+If you just need **reference data**, CDC is your best friend.
+
+Don’t build event sourcing for dropdowns. Don’t use REST calls for booking. And don’t forget the business is what drives the architecture—not your messaging system.
