@@ -40,6 +40,7 @@ The result? A system full of technical abstraction with no real alignment to bus
 > ⚠️ **Reminder:** Never talk to a BA. They might inject logic. If they start explaining the domain, you might accidentally do it right.
 
 
+![Build first. Think… maybe never](./images/failed_microservice/build_first_think_maybe_never.png)
 ---
 
 ### 🎭 Overpromise & Underdeliver
@@ -63,6 +64,7 @@ If you can't explain why you're doing microservices beyond "they're modern," you
 
 > ⚠️ **Bonus:** Promise it'll all be done in 3 months. That's 12 weeks. 100 services. Easy.
 
+![Make big promises. Deliver chaos](./images/failed_microservice/make_big_promises_deliver_chaos.png)
 ---
 
 ### 🌪️ Let Every Team Do Their Own Thing (Just YOLO It)
@@ -79,6 +81,7 @@ You're just building chaos, team by team.
 
 > 🧑‍💻 "Don't tell DevOps—they'll try to standardize things and ruin your creative chaos."
 
+![Just YOLO It](./images/failed_microservice/yolo.png)
 
 ---
 ### ⏳ “We’ll Fix It Later” as a Way of Life
@@ -89,7 +92,7 @@ You're just building chaos, team by team.
 And when something breaks? Say the sacred phrase:
 > “We’ll fix it later.”
 
-![If it work, dont touch it](./images/)
+![If it work, dont touch it](./images/failed_microservice/if_it_work.png)
 
 **Note**: Later never comes. But the outages will.
 
@@ -114,7 +117,7 @@ Just guess the microservice boundaries and figure it out later (or never).
 
 > Don’t talk to BAs: they’ll just slow you down with “understanding the domain.”
 
-![Technical beyond business](./images/)
+![Don't Do Design](./images/failed_microservice/dont_do_design.png)
 
 ---
 
@@ -149,6 +152,7 @@ The more they talk, the more they break.
 
 > ⚠️ Don’t involve architects. They might suggest “patterns.” Gross.
 
+![Russian dolls](./images/failed_microservice/russian_dolls.png)
 ---
 
 ### 🧩 Break Everything Into Nano-Services
@@ -167,7 +171,7 @@ A login request? Easy. Just call:
 
 > 🧑‍💻 “Don’t involve the architect—they’ll ask for boundaries and cohesion.”
 
-![Nano-service Chain: One Request, 12 Services](./images/)
+![Nano-service Chain: One Request, 12 Services](./images/failed_microservice/nano_service.png)
 
 Bonus: The more lines on the architecture diagram, the more success it looks like.
 
@@ -181,6 +185,7 @@ Got technical debt? Just **wrap it in another microservice**.
 - Create `LegacyWrapperAdapterProxyService` so no one has to look too closely.
 - Every time something feels wrong, solve it with another service layer.
 
+![Hide It](./images/failed_microservice/hide_service.png)
 ---
 
 ## 🔌 3. Infrastructure & Operations: Build It, Never Watch It
@@ -201,7 +206,7 @@ If no one can see it fail, it didn’t fail, right?
 
 **Bonus tip:** Only log successful requests. Errors are for pessimists.
 
-![Schrödinger’s service!](./images/)
+![Schrödinger’s service!](./images/failed_microservice/schrodinger_service.png)
 
 > This... is the Schrödinger’s Service Box.
 Until someone checks, your service is in a quantum state: it's both failing and totally fine at the same time.
@@ -225,6 +230,7 @@ Except attackers love open hearts.
 
 🔥 Real tip: Put credentials in Git. Blame the `intern`.
 
+![Expose Everything](./images/failed_microservice/expose_everything.png)
 ---
 
 ## 💻 4. Development Practices: Make Devs Cry
@@ -246,6 +252,7 @@ The less automation, the more chaos. Manual steps are the gift that keeps giving
 
 > ⚠️ Keep DevOps in the dark. If they see you SSH into prod, they’ll revoke your VPN.
 
+![Manual Everything](./images/failed_microservice/manual_deploy.png)
 ---
 
 ### 🎨 Copy-Paste All the Code
@@ -259,7 +266,7 @@ Why reuse a shared library when Ctrl+C and Ctrl+V exist?
 
 🎯 The perfect recipe for conflicting bug fixes and inconsistent logic.
 
-
+![Copy and paste](./images/failed_microservice/copy_and_paste.png)
 ---
 
 ### 🎭 Break APIs Often and Without Warning
@@ -275,6 +282,7 @@ APIs are your contract. Breaking them is betrayal—unless you **enjoy** pain.
 
 🎯 Bonus points if older versions have **zero** backward compatibility.
 
+![API Roultette](./images/failed_microservice/roulette.png)
 ---
 
 ## 🔥 Bonus Round: Team-Level Sabotage
