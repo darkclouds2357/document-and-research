@@ -92,6 +92,9 @@ You're just building chaos, team by team.
 
 ## 🧱 2. Design & Architecture: Build the Perfect Mess
 
+### DDD = Don’t Do Design
+> Boundaries are for people who read books.
+
 DDD helps align software with business logic.  
 But who has time for that?
 
@@ -102,13 +105,16 @@ Just guess the microservice boundaries and figure it out later (or never).
 - Break services by technical layer (`AuthService`, `DBService`, `UtilityService`) instead of business capability.
 - Allow overlapping responsibilities across services.
 - Duplicate business logic everywhere to “stay agile.”
+- Skip modeling domains with BAs. Guessing is faster (and more fun) 
+
+> Don’t talk to BAs: they’ll just slow you down with “understanding the domain.”
 
 ![Technical beyond business](./images/)
 
 ---
 
 ### ✅ Create the Distributed Monolith
-
+> Now with more latency and more regret!
 
 Keep all the problems of a monolith—but now with added latency!
 
@@ -190,7 +196,12 @@ If no one can see it fail, it didn’t fail, right?
 
 **Bonus tip:** Only log successful requests. Errors are for pessimists.
 
-![What Logs Where? Nobody Knows!](./images/)
+![Schrödinger’s service!](./images/)
+
+> This... is the Schrödinger’s Service Box.
+Until someone checks, your service is in a quantum state: it's both failing and totally fine at the same time.
+Because without logs, metrics, or monitoring… reality is just a guess.
+
 
 ---
 
@@ -221,11 +232,14 @@ The less automation, the more chaos. Manual steps are the gift that keeps giving
 ### 🔧 Manual Everything
 
 🛠️ **How to Fail:**
-- No CI/CD pipelines. Deploy manually. Preferably via SSH.
+- No CI/CD pipelines. Deploy manually. Preferably via SSH. 
+
+> CI = Ctrl + “I push to prod"
+
 - Run builds on local machines and push straight to prod.
 - Forget automated tests. Just "click around" to check.
 
-> ⚠️ Don't involve QA. If they don't know about the bug, it's not real.
+> ⚠️ Keep DevOps in the dark. If they see you SSH into prod, they’ll revoke your VPN.
 
 ---
 

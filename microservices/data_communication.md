@@ -403,7 +403,7 @@ It's not about sharing databases. It's about **replicating the right slice of da
 
 ---
 
-## **7. Recommendations**  
+## **6. What’s Worked for Me**  
 ### *Which Approach Fits Which Domain*
 
 After all the patterns and diagrams, here’s what actually works in production. These are the approaches that tend to hold up well over time, based on real-world experience—not theory.
