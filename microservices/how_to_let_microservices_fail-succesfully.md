@@ -82,13 +82,18 @@ You're just building chaos, team by team.
 
 ---
 ### ⏳ “We’ll Fix It Later” as a Way of Life
-- Skip foundational concerns like observability, CI/CD, testing, or domain boundaries.
-- Push code into production and repeat the sacred phrase:
+- Planning? That’s for people with time. We ship features, not diagrams.
+- Engineering best practices?  CI/CD, linting, tests, observability skip it. If the app runs on one laptop, it’s ready for prod.
+- No need to tests. No logging. No monitoring. Just push it to production and hope. After all… our users are the best testers, right?
+
+And when something breaks? Say the sacred phrase:
 > “We’ll fix it later.”
 
 ![If it work, dont touch it](./images/)
 
 **Note**: Later never comes. But the outages will.
+
+
 
 ## 🧱 2. Design & Architecture: Build the Perfect Mess
 
