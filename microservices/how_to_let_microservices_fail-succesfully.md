@@ -30,7 +30,7 @@ Microservices are trendy! Let's break everything into tiny chunks without unders
 Microservices are **not** a strategy in themselves. Yet, many teams rush into them just because it's the "modern" way.  
 The result? A system full of technical abstraction with no real alignment to business needs.
 
-🛠️ **How to Fail:**
+**How to Fail:**
 - Focus on tech trends rather than solving business problems.
 - Treat microservices as the end goal, instead of a means to an end.
 - Let developers design services without understanding business processes.
@@ -75,7 +75,7 @@ Microservices *thrive* on consistency in tooling and approach. Without it?
 You're just building chaos, team by team.
 
 **How to Fail:**
-- Allow each team to choose their own tech stack, deployment strategy, and CI/CD tooling.
+- Allow each team to choose their own tech stack, deployment strategy, and own CI/CD.
 - Avoid shared documentation or coding standards.
 - Ensure dev, staging, and production environments are wildly inconsistent.
 
