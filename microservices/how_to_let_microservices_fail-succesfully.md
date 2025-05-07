@@ -6,7 +6,7 @@
 ## Introduction: The Path to Glorious Failure
 
 So, you've been told microservices are the future.  
-They're scalable! They're flexible! Everyone from your CEO to your cousin’s startup is talking about them.
+They're scalable! They're flexible! Everyone from your CEO to your cousin’s two-person startup is talking about them.
 
 But deep down, you're skeptical... or maybe just lazy. You don’t want to lose your job. You want an exciting daily task—one that always keeps you busy, but never involves fixing bugs, tracking issues, or writing logs. That way, the boss can’t fire you because, hey, you're *always working*.
 
@@ -56,7 +56,7 @@ If you can't explain why you're doing microservices beyond "they're modern," you
 
 **How to Fail:**
 - Plan 100 microservices in 2 months, with no added team or budget.
-- Tell the C-levels microservices will triple your velocity, cut costs in half, and maybe even solve climate change.
+- Tell the C-levels microservices will triple your velocity, cut costs in half, and maybe even save the world.
 - Miss every deadline. Then say:  
     > "The complexity of distributed systems is to blame. Not me."
 
