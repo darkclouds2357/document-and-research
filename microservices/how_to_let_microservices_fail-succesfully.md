@@ -134,6 +134,7 @@ Everything’s tightly coupled, deployed together, and fails as a unit.
 - Require coordinated deployments across multiple services.
 - Share internal models and logic across boundaries.
 
+![Now with more latency and more regret](./images/failed_microservice/distributed_mono.png)
 ☠️ *You've successfully achieved the worst of both worlds: the rigidity of a monolith, with the fragility of a distributed system.*
 
 ---
