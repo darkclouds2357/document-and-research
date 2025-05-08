@@ -30,7 +30,7 @@ Microservices are trendy! Let's break everything into tiny chunks without unders
 Microservices are **not** a strategy in themselves. Yet, many teams rush into them just because it's the "modern" way.  
 The result? A system full of technical abstraction with no real alignment to business needs.
 
-**How to Fail:**
+**This is your checklist:**
 - Focus on tech trends rather than solving business problems.
 - Treat microservices as the end goal, instead of a means to an end.
 - Let developers design services without understanding business processes.
@@ -54,7 +54,7 @@ And then, reality hits.
 Don't bother tying microservices to any larger business objectives.  
 If you can't explain why you're doing microservices beyond "they're modern," you're off to a perfect failing start!
 
-**How to Fail:**
+**Propose:**
 - Plan 100 microservices in 2 months, with no added team or budget.
 - Tell the C-levels microservices will triple your velocity, cut costs in half, and maybe even save the world.
 - Miss every deadline. Then say:  
@@ -74,7 +74,7 @@ Without alignment, autonomy becomes anarchy.
 Microservices *thrive* on consistency in tooling and approach. Without it?  
 You're just building chaos, team by team.
 
-**How to Fail:**
+**Codex:**
 - Allow each team to choose their own tech stack, deployment strategy, and own CI/CD.
 - Avoid shared documentation or coding standards.
 - Ensure dev, staging, and production environments are wildly inconsistent.
@@ -109,7 +109,7 @@ But who has time for that?
 Bounded contexts? Strategic design? Pfft.  
 Just guess the microservice boundaries and figure it out later (or never).
 
-**How to Fail:**
+**Follow this:**
 - Break services by technical layer (`AuthService`, `DBService`, `UtilityService`) instead of business capability.
 - Allow overlapping responsibilities across services.
 - Duplicate business logic everywhere to “stay agile.”
@@ -129,7 +129,7 @@ Keep all the problems of a monolith—but now with added latency!
 Looks like microservices, behaves like a monolith.  
 Everything’s tightly coupled, deployed together, and fails as a unit.
 
-**How to Fail:**
+**Checklist:**
 - Use a shared database accessed by many services.
 - Require coordinated deployments across multiple services.
 - Share internal models and logic across boundaries.
@@ -145,7 +145,7 @@ More service calls = more fun!
 Excessive inter-service communication leads to latency, complexity, and instability.  
 The more they talk, the more they break.
 
-**How to Fail:**
+**Design tips:**
 - Use synchronous calls for everything.
 - Nest service calls like Russian dolls.
 - Never use retries or circuit breakers.  
@@ -182,7 +182,7 @@ Bonus: The more lines on the architecture diagram, the more success it looks lik
 
 Got technical debt? Just **wrap it in another microservice**.
 
-**How to Fail:**
+**Solutions:**
 - Create `LegacyWrapperAdapterProxyService` so no one has to look too closely.
 - Every time something feels wrong, solve it with another service layer.
 
@@ -198,7 +198,7 @@ Got technical debt? Just **wrap it in another microservice**.
 
 If no one can see it fail, it didn’t fail, right?
 
-**How to Fail:**
+**Best Practice:**
 - Don’t collect metrics, logs, or traces.
 - Scatter logs across nodes. No correlation IDs.
 - Never test failure scenarios in staging.
@@ -221,7 +221,7 @@ Because without logs, metrics, or monitoring… reality is just a guess.
 Your services are open—like your heart.  
 Except attackers love open hearts.
 
-**How to Fail:**
+**Tips:**
 - No API gateway or network boundaries.
 - Hardcode credentials and commit them to source control.
 - Let each service handle authentication “creatively.”
@@ -243,7 +243,7 @@ The less automation, the more chaos. Manual steps are the gift that keeps giving
 
 ### Manual Everything
 
-**How to Fail:**
+**How to do that ?**
 - No CI/CD pipelines. Deploy manually. Preferably via SSH. 
 
 > CI = Ctrl + “I push to prod"
@@ -260,8 +260,8 @@ The less automation, the more chaos. Manual steps are the gift that keeps giving
 
 Why reuse a shared library when Ctrl+C and Ctrl+V exist?
 
-🛠️ **How to Fail:**
-- Fork and forget. Once copied, never synced.
+**How ?**
+- Ctrl+C => Ctrl+V and forget. Once copied, never synced.
 - Fix bugs in one place, let others rot.
 - Reinvent auth, validation, and logging in every service.
 
@@ -274,7 +274,7 @@ The perfect recipe for conflicting bug fixes and inconsistent logic.
 
 APIs are your contract. Breaking them is betrayal—unless you **enjoy** pain.
 
-**How to Fail:**
+**What you need to do:**
 - Change request/response structures at will.
 - Delete endpoints and see who notices.
 - Skip versioning. Versioning is for cowards.
