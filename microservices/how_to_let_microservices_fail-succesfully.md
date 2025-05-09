@@ -8,12 +8,23 @@
 So, you've been told microservices are the future.  
 They're scalable! They're flexible! Everyone from your CEO to your cousin’s two-person startup is talking about them.
 
-But deep down, you're skeptical... or maybe just lazy. You don’t want to lose your job. You want an exciting daily task—one that always keeps you busy, but never involves fixing bugs, tracking issues, or writing logs. That way, the boss can’t fire you because, hey, you're *always working*.
+But deep down, you’re not totally convinced... or maybe just lazy. You don’t want to lose your job. You want an exciting daily task—one that always keeps you busy, but never involves fixing bugs, tracking issues, or writing logs. That way, the boss can’t fire you because, hey, you're *always working*.
 
 So instead of succeeding, you’ve decided to create a beautifully broken microservices system.  
 And we love that for you.
 
-Welcome to the field guide for failing with microservices—**intentionally and thoroughly**.  
+If the system completely fails, the project is dead, the company is furious, and you're out the door.
+
+If the system runs too perfectly, there's no chaos, no firefighting:  and suddenly, you're replaceable.
+
+So here’s the trick: 
+> Make it fail… but not too hard.
+
+Let it limp, let it scream, but let it live, because when only you can keep it alive…
+
+*You’re irreplaceable. (After all, who else understands the hundred of service dependencies you created last release?)*
+
+Welcome to the field guide for failing with microservices **intentionally and thoroughly**.  
 Whether you're a Product Manager, Developer, Architect, DevOps, or BA, we've got failure strategies just for you.
 
 > *A handbook of horror. A celebration of failure.*
@@ -85,9 +96,15 @@ You're just building chaos, team by team.
 
 ---
 ### “We’ll Fix It Later” as a Way of Life
-- Planning? That’s for people with time. We ship features, not diagrams.
-- Engineering best practices?  CI/CD, linting, tests, observability skip it. If the app runs on one laptop, it’s ready for prod.
-- No need to tests. No logging. No monitoring. Just push it to production and hope. After all… our users are the best testers, right?
+
+**Planning**: That’s for people with time. We ship features, not diagrams
+>Features come first and structure is someone else’s problem
+
+**Engineering best practices**: CI/CD, linting, tests, observability skip it. If the app runs on one laptop, it’s ready for prod..
+> It works on my machine
+
+**Deploy straight to prod**: No staging, no rollback, just vibes. Just push it to production and hope
+> After all… our users are the best testers, right ?
 
 And when something breaks? Say the sacred phrase:
 > “We’ll fix it later.”
@@ -110,7 +127,7 @@ Bounded contexts? Strategic design? Pfft.
 Just guess the microservice boundaries and figure it out later (or never).
 
 **Follow this:**
-- Break services by technical layer (`AuthService`, `DBService`, `UtilityService`) instead of business capability.
+- Break services by technical layer (`RequestHandlerService`, `DBService`, `UtilityService`) instead of business capability.
 - Allow overlapping responsibilities across services.
 - Duplicate business logic everywhere to “stay agile.”
 - Skip modeling domains with BAs. Guessing is faster (and more fun) 
@@ -124,7 +141,7 @@ Just guess the microservice boundaries and figure it out later (or never).
 ### Create the Distributed Monolith
 > Now with more latency and more regret!
 
-Keep all the problems of a monolith—but now with added latency!
+Keep all the problems of a monolith - but now with added latency!
 
 Looks like microservices, behaves like a monolith.  
 Everything’s tightly coupled, deployed together, and fails as a unit.
@@ -183,6 +200,7 @@ Bonus: The more lines on the architecture diagram, the more success it looks lik
 Got technical debt? Just **wrap it in another microservice**.
 
 **Solutions:**
+- Add layers until no one remembers what the original system does
 - Create `LegacyWrapperAdapterProxyService` so no one has to look too closely.
 - Every time something feels wrong, solve it with another service layer.
 
@@ -227,7 +245,7 @@ Except attackers love open hearts.
 - Let each service handle authentication “creatively.”
 
 > “Security team? Never heard of them. They always ask dumb things like:  
-> *‘Why is your auth token `admin123` publicly cached?’*”
+> *‘Why is your password `admin123` publicly cached in log?’*”
 
 Real tip: Put credentials in Git. Blame the `intern`.
 
@@ -288,6 +306,10 @@ Bonus points if older versions have **zero** backward compatibility.
 
 ## Bonus Round: Team-Level Sabotage
 
+*Because failure is a team sport.*
+
+It’s not just bad architecture that takes a system down. It’s everyone doing their part to miscommunicate, misconfigured, and misdelivered.
+
 - **BA**: Ignore them when modeling services. Let devs reconstruct business logic from Slack messages.
 - **Developer**: Don’t write tests. Let production validate your code.
 - **QA**: Accept bugs as “features in disguise.”
@@ -313,7 +335,7 @@ Whether you're in business, architecture, ops, or dev, there's a role for **ever
 
 Have you seen any of these failure strategies creeping into projects you've been on?
 
-Maybe even by chance used when yourself. We've all been there probably. And what happened, what were the results? 
+Maybe even by chance used by yourself. We've all been there probably. And what happened, what were the results? 
 
 Maybe also consider that secret ending. 
 
